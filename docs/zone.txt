@@ -1,0 +1,22 @@
+;; This zone file is intended for use on our domain registrar's website.  Paste
+;; the contents this file or otherwise use the web UI to configure our zone to
+;; reflect the contents of this file.
+
+;; MX records
+@        3600  IN MX 1  ASPMX.L.GOOGLE.COM.
+@        3600  IN MX 5  ALT1.ASPMX.L.GOOGLE.COM.
+@        3600  IN MX 5  ALT2.ASPMX.L.GOOGLE.COM.
+@        3600  IN MX 10 ALT3.ASPMX.L.GOOGLE.COM.
+@        3600  IN MX 10 ALT4.ASPMX.L.GOOGLE.COM.
+
+;; physical servers
+@        3600 IN A 192.30.252.153 ;; github pages 1
+@        3600 IN A 192.30.252.154 ;; github pages 2
+
+;; service names
+www      3600  IN CNAME somervillebikekitchen.github.io
+mail     3600  IN CNAME ghs.google.com.
+calendar 3600  IN CNAME ghs.google.com.
+docs     3600  IN CNAME ghs.google.com.
+
+;; vim: ft=bindzone
