@@ -53,3 +53,7 @@ a{
   background-color:#B2D9B2;
   padding:2px 15px;
 }
+
+.event-list h3 {
+  display: inline;
+}
