@@ -10,12 +10,8 @@ EVENT_TAGS = [
 
 EVENT_TEMPLATE = """
 <li>
-<a href="/%(page_name)s">
-  <h3>%(event_title)s</h3>
-</a> (%(event_datetime)s)
-<p>
-  %(event_description)s
-</p>
+<h3><a href="/%(page_name)s">%(event_title)s</a></h3> (%(event_datetime)s)
+<p>%(event_description)s</p>
 </li>
 """[1:-1]
 
