@@ -6,6 +6,7 @@ events.html :
 	cat hacks/tail.html >>$@
 
 run :
+	@echo "navigate to http://localhost:8000/"
 	python2 -m SimpleHTTPServer
 
 .PHONY: events.html test_head run
