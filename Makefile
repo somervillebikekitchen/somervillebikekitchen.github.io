@@ -5,4 +5,7 @@ events.html :
 	hacks/events_generator.py $(EVENTS) >>$@
 	cat hacks/tail.html >>$@
 
-.PHONY: events.html test_head
+run :
+	python2 -m SimpleHTTPServer
+
+.PHONY: events.html test_head run
