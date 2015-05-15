@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+  <meta name="description"
+        content="Somerville Bike Kitchen, a community bicycle repair cooperative">
+  <title>Somerville Bike Kitchen</title>
+  <link rel='stylesheet' href='/stylesheet.css' type='text/css' />
+</head>
+<body>
+  <h2 class="ban">Somerville Bike Kitchen</h2>
+
+  <ul class="nav">
+    <li><a href="/">about</a></li>
+    <li><a href="/events.html">events</a></li>
+    <li><a href="/photos.html">photos</a></li>
+    <li><a href="/contact.html">contact</a></li>
+  </ul>
+
+  <div class="maintext">
+<!-- ======================== -->
+<!-- PAGE CONTENT STARTS HERE -->
+<!-- ======================== -->
+
+<style>
+  div.maintext { width: 900px }
+  code { margin-left: 20px; font-family: monospace }
+</style>
+
+<h3>adding people to the "discuss" listserv</h3>
+<ul>
+<li>
+  go to the somervillebikekitchen.org admin console:<br>
+  <a href="https://admin.google.com/somervillebikekitchen.org/AdminHome">
+    https://admin.google.com/somervillebikekitchen.org/AdminHome
+  </a>
+</li>
+<li>login using your somervillebikekitchen.org google apps credentials</li>
+<li>click on <strong>Groups</strong></li>
+<li>click on the <strong>discuss</strong> listserv</li>
+<li>click on <strong>Manage users in discuss</strong></li>
+<li>paste the email addresses in the text box (comma delimited)</li>
+<li>select <strong>Member</strong> from the drop-down and click <strong>Add</strong></li>
+</ul>
+
+<h3>open shop scheduling</h3>
+<ul>
+<li>we keep a calendar in the shop</li>
+</ul>
+
+<h3>core staff onboarding</h3>
+<ul>
+<li>verify that the new staff member has met all the onboarding criteria</li>
+<li>add the new staff to the discuss mailing list using the instructions above</li>
+<li>
+  record the new staff member's information in a physical list inside the shop
+  <ul>
+    <li>full name</li>
+    <li>email address</li>
+    <li>alternative contact</li>
+  </ul>
+</li>
+</ul>
+
+<h3>editing the website</h3>
+<ul>
+<li>
+  clone the website using git:<br>
+  <code>git clone https://github.com/somervillebikekitchen/somervillebikekitchen.github.io.git</code>
+  <br>or<br>
+  <code>git clone http://troy.sankey.info/repos/sbk.git</code>
+</li>
+<li>make your desired changes</li>
+<li>
+  spin up test server:<br>
+  <code>make run</code>
+</li>
+<li>navigate to <a href="http://localhost:8000/">http://localhost:8000/</a> in your web browser</li>
+<li>make sure your changes look correct</li>
+<li>
+  commit your changes:<br>
+  <code>git commit -am "Your reason for change"</code>
+</li>
+<li>
+  create a patch file with your changes:<br>
+  <code>git format-patch origin/master</code><br>
+  this will generate a file and give you a filename; attach this file to an
+  email and send it to <span id="info-address">info _at_ somervillebikekitchen
+  (dot) org</span>.
+</li>
+</ul>
+</ol>
+
+<script src="/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+  var address = $('span#info-address').text()
+    .replace(' _at_ ', '@')
+    .replace(' (dot) ', '.');
+  $('span#info-address').text(address);
+});
+</script>
+
+<!-- ====================== -->
+<!-- PAGE CONTENT ENDS HERE -->
+<!-- ====================== -->
+	</div>
+</body>
+
+</html>
