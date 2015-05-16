@@ -51,18 +51,22 @@ a{
   padding:2px 15px;
 }
 #tools_list{
-width:500px;
-margin-left:auto;
-margin-right:auto;
+  width:500px;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 img {
-width:400px;
-border:10px solid #7A991A;
-box-shadow:4px 4px 4px black;
-margin:20px;
+  width:400px;
+  border:10px solid #7A991A;
+  box-shadow:4px 4px 4px black;
+  margin:20px;
 }
 
 .event-list h3 {
   display: inline;
+}
+
+code {
+  margin-left: 15px; font-family: monospace
 }
