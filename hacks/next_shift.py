@@ -2,6 +2,7 @@
 import urllib2
 import csv
 import datetime
+import sys
 
 SHIFTS_CSV_URL = 'http://sbk.sankey.info/calc/dewxjhhcc2.csv'
 NUM_STAFF = 8
@@ -32,19 +33,24 @@ def get_staff_names(shifts, all_staff):
       staff.append(all_staff[i])
   return staff
 
-f = urllib2.urlopen(SHIFTS_CSV_URL)
-rows = csv.reader(f)
-i = 0
-all_staff = []
-for row in rows:
-  if i == 0:
-    all_staff = get_row_shifts(row)
-  else:
-    date, shifts = parse_row(row)
-    if is_upcoming(date):
-      print '%d days from today (%s) the following staff members are scheduled: %s' % (
-        (date - datetime.date.today()).days,
-        date.strftime('%F'),
-        ','.join(get_staff_names(shifts, all_staff)))
-      break
-  i += 1
+def get_message():
+  f = urllib2.urlopen(SHIFTS_CSV_URL)
+  rows = csv.reader(f)
+  i = 0
+  all_staff = []
+  for row in rows:
+    if i == 0:
+      all_staff = get_row_shifts(row)
+    else:
+      date, shifts = parse_row(row)
+      if is_upcoming(date):
+        return '%d days from today (%s) the following staff members are scheduled: %s' % (
+          (date - datetime.date.today()).days,
+          date.strftime('%F'),
+          ','.join(get_staff_names(shifts, all_staff)))
+    i += 1
+
+if len(sys.argv) > 1 and sys.argv[1] == '--json':
+  print "{'message':'%s'}" % get_message()
+else:
+  print get_message()
