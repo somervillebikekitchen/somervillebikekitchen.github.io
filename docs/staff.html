@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+  <meta name="description"
+        content="Somerville Bike Kitchen, a community bicycle repair cooperative">
+  <title>Somerville Bike Kitchen</title>
+  <link rel='stylesheet' href='/stylesheet.css' type='text/css' />
+</head>
+<body>
+  <h2 class="ban">Somerville Bike Kitchen</h2>
+
+  <ul class="nav">
+    <li><a href="/">about</a></li>
+    <li><a href="/events.html">events</a></li>
+    <li><a href="/photos.html">photos</a></li>
+    <li><a href="/contact.html">contact</a></li>
+  </ul>
+
+  <div class="maintext">
+<!-- ======================== -->
+<!-- PAGE CONTENT STARTS HERE -->
+<!-- ======================== -->
+
+<h3>Next shift:</h3>
+<p id="next-shift"></p>
+
+<h3>Unscheduled shifts:</h3>
+<ul id="unscheduled-shifts"></ul>
+
+<script src="/jquery.min.js"></script>
+<script>
+  function next_shift(data) { $("p#next-shift").append(data.message); }
+  function unscheduled(data) {
+    for (msg in data.message) {
+      $("ul#unscheduled-shifts").append("<li>" + data.message[msg] + "</li>");
+    }
+  }
+</script>
+<script type="application/javascript" src="http://sbk.sankey.info/hacks/next_shift.cgi?callback=next_shift"></script>
+<script type="application/javascript" src="http://sbk.sankey.info/hacks/unscheduled.cgi?callback=unscheduled"></script>
+
+<!-- ====================== -->
+<!-- PAGE CONTENT ENDS HERE -->
+<!-- ====================== -->
+	</div>
+</body>
+
+</html>
