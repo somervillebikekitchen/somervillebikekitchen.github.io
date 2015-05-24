@@ -6,6 +6,11 @@ import sys
 
 SHIFTS_CSV_URL = 'http://sbk.sankey.info/calc/dewxjhhcc2.csv'
 NUM_STAFF = 8
+NUM_UNSCHEDULED = 2
+
+if '--help' in sys.argv:
+  print 'usage: %s [--help] [--json] [--unscheduled]' % sys.argv[0]
+  sys.exit(0)
 
 def get_row_shifts(row):
   return row[2:2+NUM_STAFF-1]
@@ -24,7 +29,7 @@ def is_upcoming(date):
 
 def get_staff_names(shifts, all_staff):
   staff = []
-  for i in range(0,NUM_STAFF-1):
+  for i in range(0,len(shifts)-1):
     try:
       scheduled = int(shifts[i])
     except:
@@ -33,7 +38,10 @@ def get_staff_names(shifts, all_staff):
       staff.append(all_staff[i])
   return staff
 
-def get_message():
+def is_scheduled(shifts):
+  return '1' in shifts
+
+def get_next_shift():
   f = urllib2.urlopen(SHIFTS_CSV_URL)
   rows = csv.reader(f)
   i = 0
@@ -50,7 +58,36 @@ def get_message():
           ','.join(get_staff_names(shifts, all_staff)))
     i += 1
 
-if len(sys.argv) > 1 and sys.argv[1] == '--json':
-  print "{'message':'%s'}" % get_message()
+def get_unscheduled():
+  f = urllib2.urlopen(SHIFTS_CSV_URL)
+  rows = csv.reader(f)
+  all_staff = []
+  unscheduled = []
+  r = 0
+  n = 0
+  for row in rows:
+    if r == 0:
+      all_staff = get_row_shifts(row)
+    else:
+      date, shifts = parse_row(row)
+      if is_upcoming(date) and not is_scheduled(shifts):
+        unscheduled.append('%s (%s) %d days from now!' % (
+          date.strftime('%F'),
+          date.strftime('%A'),
+          (date - datetime.date.today()).days))
+        n += 1
+        if n >= NUM_UNSCHEDULED: break
+    r += 1
+  return unscheduled
+
+if '--unscheduled' in sys.argv:
+  if '--json' in sys.argv:
+    print "{\"message\":[\"%s\"]}" % '","'.join(get_unscheduled())
+  else:
+    print '\n'.join(get_unscheduled())
 else:
-  print get_message()
+  if '--json' in sys.argv:
+    print "{\"message\":\"%s\"}" % get_next_shift()
+  else:
+    print get_next_shift()
+

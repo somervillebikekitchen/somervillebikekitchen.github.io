@@ -2,8 +2,8 @@
 echo "Content-Type: application/javascript"
 echo
 
-printf "next_shift("
-./next_shift.py --json | tr -d '\n'
+printf "unscheduled("
+./next_shift.py --json --unscheduled | tr -d '\n'
 printf ");"
 
 echo
