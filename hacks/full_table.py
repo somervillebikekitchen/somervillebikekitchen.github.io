@@ -1,5 +1,6 @@
 #!/usr/bin/python2
 from shifts import Shifts
+import json
 schedule = Shifts.fetch_schedule()
 new_data = []
 for date, shifts in schedule['data'].items():
@@ -10,4 +11,4 @@ for date, shifts in schedule['data'].items():
       'is_scheduled': Shifts.is_scheduled(shifts),
     }) 
 schedule['data'] = sorted(new_data, key=lambda y: y['date'])
-print schedule
+print json.dumps(schedule)
