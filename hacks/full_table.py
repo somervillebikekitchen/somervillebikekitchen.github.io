@@ -9,5 +9,5 @@ for date, shifts in schedule['data'].items():
       'shifts': shifts,
       'is_scheduled': Shifts.is_scheduled(shifts),
     }) 
-schedule['data'] = new_data
+schedule['data'] = sorted(new_data, key=lambda y: y['date'])
 print schedule
