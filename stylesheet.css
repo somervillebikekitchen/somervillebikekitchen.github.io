@@ -48,7 +48,7 @@ a{
   margin-right:auto;
   border-radius:10px;
   background-color:#B2D9B2;
-  padding:2px 15px;
+  padding:5px 15px;
 }
 #tools_list{
   width:500px;
@@ -69,4 +69,15 @@ img {
 
 code {
   margin-left: 15px; font-family: monospace
+}
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+th, td {
+  border: 1px solid black;
+  padding: 3px;
 }
