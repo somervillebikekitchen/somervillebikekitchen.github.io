@@ -14,4 +14,8 @@ for f in $(find -iname '*.html' | grep -v '^./hacks'); do
     echo
   fi
 done
+if [[ $error -eq 1 ]]; then
+  echo
+  echo 'Some tests failed.'
+fi
 exit $error
