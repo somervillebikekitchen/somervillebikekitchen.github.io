@@ -1,3 +1,6 @@
+default : events.html tools.html
+	@echo "All pages generated successfully!"
+
 # events page generator
 EVENTS := $(wildcard events/*.html)
 events.html :
