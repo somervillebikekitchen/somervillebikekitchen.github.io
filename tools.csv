@@ -1,7 +1,7 @@
 Name,Model,Qty.
 Cable cutter,CN-10,3
 Freewheel pin spanner,SPA-2,3
-Spoke wrench,"#0, #2",2
+Spoke wrench,"#0, #1, #2",1
 Chain break,"CT-5, CT-3",3
 Bottom bracket wrenches,"HCW-5, BBT-4, BBT-9",5
 Sealed bracket wrenches,"BBT-22, FR-5, BBT-5",5
@@ -23,3 +23,4 @@ Needle nose pliers,,1
 Hex wrench,2mm – 10mm,22
 Triple wrench,"4mm, 5mm, 6mm",1
 Socket set,6mm – 14mm,1
+Metric wrench,7mm – 18mm,1
