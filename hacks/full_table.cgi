@@ -10,15 +10,16 @@ function refresh_cache() {
 }
 
 function get_the_goods() {
-  if [[ -e $CACHE_FILE ]]; then
-    age=$(( $(date +%s) - $(stat -c "%Y" $CACHE_FILE) ))
-    if [[ $age -gt $TTL ]]; then
-      refresh_cache
-    fi
-  else
-    refresh_cache
-  fi
-  cat $CACHE_FILE
+  ./full_table.py | tr -d '\n'
+#  if [[ -e $CACHE_FILE ]]; then
+#    age=$(( $(date +%s) - $(stat -c "%Y" $CACHE_FILE) ))
+#    if [[ $age -gt $TTL ]]; then
+#      refresh_cache
+#    fi
+#  else
+#    refresh_cache
+#  fi
+#  cat $CACHE_FILE
 }
 
 printf "full_table(%s);" "$(get_the_goods)"
