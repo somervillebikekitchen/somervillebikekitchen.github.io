@@ -1,18 +1,26 @@
 #!/bin/bash
 error=0
 # test head and tail
-head_lines=$(wc -l hacks/head.html | cut -d' ' -f1)
-tail_lines=$(wc -l hacks/tail.html | cut -d' ' -f1)
+head_lines=$(wc -l <hacks/head.html)
+tail_lines=$(wc -l <hacks/tail.html)
 for f in $(find -iname '*.html' | grep -v '^./hacks'); do
   printf "testing $f..."
-  (echo "$(head -n $head_lines "$f")"; echo) | diff -u hacks/head.html - >/dev/null || \
-  (echo "$(tail -n $tail_lines "$f")"; echo) | diff -u hacks/tail.html - >/dev/null
+
+  echo "$(head -n $head_lines "$f")" | cmp hacks/head.html - >/dev/null 2>&1
   if [[ $? -ne 0 ]]; then
     error=1
-    echo '[FAILED]'
-  else
-    echo
+    echo '[FAILED] (check head)'
+    continue
   fi
+
+  echo "$(tail -n $tail_lines "$f")" | cmp hacks/tail.html - >/dev/null 2>&1
+  if [[ $? -ne 0 ]]; then
+    error=1
+    echo '[FAILED] (check tail)'
+    continue
+  fi
+
+  echo '[OK]'
 done
 if [[ $error -eq 1 ]]; then
   echo
