@@ -1,0 +1,12 @@
+description: >
+  The Somerville Bike Kitchen is a bicycle repair cooperative where members of
+  the community work together to maintain a bicycle shop where they can fix
+  their own bicycles.
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "http://somervillebikekitchen.org" # the base hostname & protocol for your site
+#github_username:  lurc
+
+# Build settings
+markdown: kramdown
+
+#exclude: ['vendor']
