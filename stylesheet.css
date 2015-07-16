@@ -71,6 +71,10 @@ code {
   margin-left: 15px; font-family: monospace
 }
 
+pre {
+  margin-left: 15px; font-family: monospace
+}
+
 table {
   border: 1px solid black;
   border-collapse: collapse;
