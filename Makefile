@@ -1,25 +1,31 @@
-default : events.html tools.html
+GENERATED_PAGES := events.html tools.html
+
+default : $(GENERATED_PAGES)
 	@echo "All pages generated successfully!"
 
+run : $(GENERATED_PAGES)
+	@echo "**********************************"
+	@echo "navigate to http://localhost:8000/"
+	@echo "**********************************"
+	jekyll --server 8000
+
 # events page generator
-EVENTS := $(wildcard events/*.html)
-events.html :
-	@cat hacks/head.html >$@
-	@hacks/events_generator.py $(EVENTS) >>$@
-	@cat hacks/tail.html >>$@
+EVENT_PAGES := $(wildcard events/*.html)
+events.html : $(EVENT_PAGES)
+	@echo "---" >$@
+	@echo "layout: default" >>$@
+	@echo "title: Events" >>$@
+	@echo "---" >>$@
+	@hacks/generate_events.py $(EVENT_PAGES) >>$@
 	@echo "Events page successfully created."
 
+# tools page generator
 tools.html : tools.csv
-	@cat hacks/head.html >$@
+	@echo "---" >$@
+	@echo "layout: default" >>$@
+	@echo "title: Tools" >>$@
+	@echo "---" >>$@
 	@hacks/generate_tools.sh $< >>$@
-	@cat hacks/tail.html >>$@
 	@echo "Tools page successfully created."
 
-run :
-	@echo "navigate to http://localhost:8000/"
-	python2 -m SimpleHTTPServer
-
-test : 
-	hacks/tests.sh
-
-.PHONY: events.html test run
+.PHONY: run

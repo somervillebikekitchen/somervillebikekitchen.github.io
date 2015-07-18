@@ -18,6 +18,10 @@
   </ul>
 
   <div class="maintext">
+    <h3 id="event_title">{{ page.title }}</h3>
+    <p id="event_datetime">{{ page.datetime }}</p>
+    {% if page.description %}<p id="event_description">{{ page.description }}</p>{% endif %}
+    <p>---<p>
     {{ content }}
     <div style="clear:both"></div>
   </div>

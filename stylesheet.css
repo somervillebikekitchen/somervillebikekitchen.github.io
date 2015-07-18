@@ -85,3 +85,27 @@ th, td {
   border: 1px solid black;
   padding: 3px;
 }
+
+.footer {
+  text-align: center;
+  color: #888;
+}
+
+.footer ul {
+  list-style:none;
+  padding-left:0;
+}
+
+.footer li {
+  display: inline;
+  margin: 2px;
+}
+
+.footer a {
+  text-decoration: underline;
+  color: #222;
+}
+
+.footer a:hover {
+  background-color: white;
+}
