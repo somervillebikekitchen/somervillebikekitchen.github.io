@@ -37,6 +37,6 @@ for event_page_filename in sys.argv[1:]:
   events.append(evparser.event_info)
 
 print '<ul class="event-list">'
-for event in sorted(events, key=lambda e: e['datetime']):
+for event in sorted(events, key=lambda e: e['datetime'], reverse=True):
   print EVENT_TEMPLATE % event
 print '</ul>'
