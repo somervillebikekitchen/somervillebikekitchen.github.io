@@ -63,6 +63,13 @@ img {
   margin:20px;
 }
 
+img.no-decoration {
+  width:auto;
+  border:none;
+  box-shadow:none;
+  margin:auto;
+}
+
 .event-list h3 {
   display: inline;
 }
