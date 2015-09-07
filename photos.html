@@ -1,13 +1,18 @@
 ---
 layout: default
 title: Photos
+albums:
+ - 2015-04-01_our_beginnings
+ - 2015-08-23_flea_market
 ---
 <style>
-  div.maintext { width: 95%; text-align: center }
+img { width: 200px; }
 </style>
-
-<img src="people.JPG"/>
-<img src="pegboard.JPG"/>
-<img src="threeinfront.JPG"/>
-<img src="room.JPG"/>
-<img src="jonandsam.JPG"/>
+{% for album_title in page.albums %}
+<a href="/albums/{{ album_title | uri_escape }}/">
+<div style="float:left; text-align:center; width:250px">
+<img src="/albums/{{ album_title | uri_escape }}/thumbnail.jpg" /><br>
+{{ album_title }}
+</div>
+</a>
+{% endfor %}
