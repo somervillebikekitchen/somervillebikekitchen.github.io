@@ -26,7 +26,9 @@
 
     <ul>
     {% for photo in page.photos %}
+    <a href="{{ photo | uri_escape }}">
     <img src="{{ photo | uri_escape }}"/>
+    </a>
     {% endfor %}
     </ul>
 
