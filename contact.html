@@ -4,7 +4,7 @@ title: Contact
 ---
 <h3>Contact</h3>
 
-<p>Directly contact us at <span id="info-address">info _at_ somervillebikekitchen (dot) org</span>.</p>
+<p>Directly contact us at <span id="staff-address">staff _at_ somervillebikekitchen (dot) org</span>.</p>
 <p>Subscribe to our "discuss" mailing list to keep up to date and join the discussion:</p>
 <ol>
   <li>send a blank email to <a href="mailto:discuss+subscribe@somervillebikekitchen.org" id="subscribe-address">discuss _plus sign_ subscribe (at) somervillebikekitchen *dot* org</a></li>
@@ -17,10 +17,10 @@ title: Contact
 <script src="/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  var address = $('span#info-address').text()
+  var address = $('span#staff-address').text()
     .replace(' _at_ ', '@')
     .replace(' (dot) ', '.');
-  $('span#info-address').text(address);
+  $('span#staff-address').text(address);
   address = $('#subscribe-address').text()
     .replace(' _plus sign_ ', '+')
     .replace(' (at) ', '@')

@@ -15,9 +15,9 @@ layout: default
 <li><a href="https://docs.google.com/spreadsheets/d/1hGrXwc8xmsMuyflLvz2ZJvsDi081Sy3d2ZWdASE_FFo/edit?usp=sharing">expenses spreadsheet</a></li>
 </ul>
 
-<h3 id="adding-to-discuss">Adding people to the "discuss" listserv</h3>
+<h3 id="adding-to-discuss">Adding people to the discuss@ listserv</h3>
 <p>Anybody can subscribe themselves to the <strong>discuss</strong> listserv,
-   but only admins can add others to <strong>discuss</strong>.</p>
+   but only existing staff can add others to <strong>discuss</strong>.</p>
 <ul>
 <li>
   go to the somervillebikekitchen.org admin console:<br>
@@ -29,10 +29,28 @@ layout: default
 <li>click on <strong>Groups</strong></li>
 <li>click on the <strong>discuss</strong> listserv</li>
 <li>click on <strong>Manage users in discuss</strong></li>
-<li>paste the email addresses in the text box (comma delimited)</li>
+<li>paste the email addresses in the text box (separate each address with a comma)</li>
 <li>select <strong>Member</strong> from the drop-down and click <strong>Add</strong></li>
 </ul>
-<p>Use this same procedure for the <strong>info</strong> listserv.</p>
+
+<h3 id="adding-to-staff">Adding new staff to the staff@ listserv</h3>
+<p>Only existing staff can add others to <strong>staff@</strong>.</p>
+<ul>
+<li>
+  go to the somervillebikekitchen.org admin console:<br>
+  <a href="https://admin.google.com/somervillebikekitchen.org/AdminHome">
+    https://admin.google.com/somervillebikekitchen.org/AdminHome
+  </a>
+</li>
+<li>login as "admin@somervillebikekitchen.org" (obtain the password from
+    another staff member if you cannot remember)</li>
+<li>click on <strong>Groups</strong></li>
+<li>click on the <strong>staff</strong> listserv</li>
+<li>click on <strong>Manage users in staff</strong></li>
+<li>paste the email address in the text box</li>
+<li>select <strong>Owner</strong> from the drop-down and click
+    <strong>Add</strong></li>
+</ul>
 
 <h3 id="open-shop-scheduling">Open shop scheduling</h3>
 <p>See the <a href="/docs/staff.html">staff page</a> for information about upcoming shifts.</p>
@@ -46,7 +64,7 @@ schedule.
 <ul>
 <li>add a new column to the <a href="http://sbk.sankey.info/calc/dewxjhhcc2">sheduling spreadsheet</a></li>
 <li><a href="#adding-to-discuss">subscribe</a> the new staff member to the <strong>discuss</strong> listserv as a "Member"</li>
-<li><a href="#adding-to-discuss">subscribe</a> the new staff member to the <strong>info</strong> listserv as a "Member"</li>
+<li><a href="#adding-to-discuss">subscribe</a> the new staff member to the <strong>staff</strong> listserv as a "Member"</li>
 <li>
   record the new staff member's information in a physical list inside the shop
   <ul>
@@ -55,7 +73,7 @@ schedule.
     <li>alternative contact</li>
   </ul>
 </li>
-<li>Give a key to Sprout to the new staff member.</li>
+<li>Make a copy of the Sprout key and give it to the new staff member.</li>
 <li>
 Email the new staff member with something similar to the following text:
 <pre>
@@ -69,7 +87,7 @@ This is where you can find all the information needed by staff members.  Look
 there to find the latest schedule and various instructions.
 
 Please sign up for your first open shop by looking for an unscheduled day when
-you are available, and requesting to host it (send mail to info@).
+you are available, and requesting to host it (send mail to staff@).
 
 Thanks, and see you soon!
 </pre>
@@ -124,9 +142,9 @@ administrator onboarding steps:
 <script src="/jquery.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-  var address = $('span#info-address').text()
+  var address = $('span#staff-address').text()
     .replace(' _at_ ', '@')
     .replace(' (dot) ', '.');
-  $('span#info-address').text(address);
+  $('span#staff-address').text(address);
 });
 </script>
