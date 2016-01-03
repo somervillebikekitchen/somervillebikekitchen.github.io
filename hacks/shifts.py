@@ -8,8 +8,9 @@ NUM_STAFF = 8
 class Shifts:
   @staticmethod
   def get_row_shifts(row):
-    '''get shfits from full spreadsheet row'''
-    return row[2:2+NUM_STAFF-1]
+    '''get shfits cells from full spreadsheet row'''
+    column_first_person = 3
+    return row[column_first_person:column_first_person+NUM_STAFF-1]
   
   @staticmethod
   def parse_header(row):

@@ -13,7 +13,8 @@ if '--help' in sys.argv:
   sys.exit(0)
 
 def get_row_shifts(row):
-  return row[2:2+NUM_STAFF-1]
+  column_first_person = 3
+  return row[column_first_person:column_first_person+NUM_STAFF-1]
 
 def parse_row(row):
   try:
