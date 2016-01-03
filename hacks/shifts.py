@@ -10,7 +10,7 @@ class Shifts:
   def get_row_shifts(row):
     '''get shfits cells from full spreadsheet row'''
     column_first_person = 3
-    return row[column_first_person:column_first_person+NUM_STAFF-1]
+    return row[column_first_person:column_first_person+NUM_STAFF]
   
   @staticmethod
   def parse_header(row):
