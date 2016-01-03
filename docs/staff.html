@@ -43,7 +43,7 @@ Simply send mail to info@.  All staff will receive mail sent to info@.
 <script>
   function gen_row(row) {
     var jsrow = $('<tr></tr>');
-    jsrow.append('<th class="date">' + row['date'] + '</th>');
+    jsrow.append('<th class="date">' + row['date'] + ' ' + row['dow'] + '</th>');
     var row_class = 'unscheduled';
     for (scheduled in row['shifts']) {
       cell_class = 'unscheduled';

@@ -7,6 +7,7 @@ for date, shifts in schedule['data'].items():
   if Shifts.is_upcoming(date):
     new_data.append({
       'date': date.strftime('%F'),
+      'dow': date.strftime('%a'),
       'shifts': shifts,
       'is_scheduled': Shifts.is_scheduled(shifts),
     }) 
