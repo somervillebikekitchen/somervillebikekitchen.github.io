@@ -8,8 +8,12 @@ albums:
  - 2016-02-01_group_photo
 ---
 <style>
-div.maintext img { height: 140px; width:auto; }
+div.maintext { width: 95%; text-align: center }
+div.maintext img { height: 180px; width:auto; }
 </style>
+
+<h2>SBK Photo Albums</h2>
+
 {% for album_title in page.albums %}
 <a href="/albums/{{ album_title | uri_escape }}/">
 <div style="float:left; text-align:center;">

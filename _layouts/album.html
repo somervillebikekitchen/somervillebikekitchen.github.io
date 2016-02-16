@@ -21,8 +21,10 @@
 
     <style>
       div.maintext { width: 95%; text-align: center }
-      img { float:left }
+      img { float:left; width:auto; height:250px }
     </style>
+
+    {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
 
     <ul>
     {% for photo in page.photos %}
@@ -33,6 +35,8 @@
     </ul>
 
     <div style="clear:both"></div>
+
+    <div style="text-align:center"><a href="/photos.html">back to albums</a></div>
   </div>
 
   <div class="footer">
