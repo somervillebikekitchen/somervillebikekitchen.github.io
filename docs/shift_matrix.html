@@ -26,6 +26,24 @@ To request to be scheduled for a certain day, send mail to staff@.
     jsrow.addClass(row_class);
     return jsrow;
   }
+  function date_is_scheduled(row) {
+    for (scheduled in row['shifts']) {
+      if (row['shifts'][scheduled] == '1') {
+        return true;
+      }
+    }
+    return false;
+  }
+  function strip_unscheduled_dates(data) {
+    var latest_scheduled_index = 0;
+    for (var row = 0; row < data.length; row++) {
+      if (date_is_scheduled(data[row])) {
+        latest_scheduled_index = row;
+      }
+    }
+    var latest_visible_index = latest_scheduled_index + 4;
+    return data.slice(0, latest_visible_index);
+  }
   function full_table(data) {
     var table = $("table#shift-matrix");
     var header = $('<tr></tr>');
@@ -34,7 +52,8 @@ To request to be scheduled for a certain day, send mail to staff@.
       header.append('<th>' + data['all_staff'][i] + '</th>');
     }
     table.append(header);
-    for (row in data['data']) {
+    stripped_data = strip_unscheduled_dates(data['data']);
+    for (row in stripped_data) {
       table.append(gen_row(data['data'][row]));
     }
   }
