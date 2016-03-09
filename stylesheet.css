@@ -7,6 +7,14 @@ a {
 .ban {
   text-align:center;
   font-size:40px;
+  margin-top:10px;
+  margin-bottom:0;
+}
+.subban {
+  margin:4px;
+  text-align:center;
+  font-size:13px;
+  color:#444;
 }
 
 .nav {
@@ -21,6 +29,7 @@ a {
   width:530px;
   margin-left:auto;
   margin-right:auto;
+  margin-top:10px;
 }
 
 .nav li {
