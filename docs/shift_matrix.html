@@ -2,9 +2,19 @@
 layout: sub
 title: Shift Matrix
 ---
+<h3>Shift Matrix</h3>
 <table id="shift-matrix"></table>
 
-To request to be scheduled for a certain day, send mail to staff@.
+<p>To request to be scheduled for a certain day, send mail to staff@.</p>
+
+<h3>Terms Matrix</h3>
+<table id="terms-matrix">
+<tr>
+<th>name</th>
+<th>current term</th>
+<th>next term</th>
+</tr>
+</table>
 
 <script src="/jquery.min.js"></script>
 <script>
@@ -57,8 +67,23 @@ To request to be scheduled for a certain day, send mail to staff@.
       table.append(gen_row(data['data'][row]));
     }
   }
+
+  /* Dues Collector View (terms matrix) */
+  function terms_data(data) {
+    var table = $("table#terms-matrix");
+    for (member in data) {
+      current_term_range = data[member]['current_term'] + ' — ' + data[member]['next_term'];
+      next_term_range = data[member]['next_term'] + ' — ' + data[member]['next_next_term'];
+      var row = $('<tr></tr>');
+      row.append($('<td></td>').text(member))
+      row.append($('<td></td>').text(current_term_range))
+      row.append($('<td></td>').text(next_term_range))
+      table.append(row);
+    }
+  }
 </script>
 <script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table"></script>
+<script type="application/javascript" src="http://sbk.sankey.info/hacks/terms_data.cgi?callback=terms_data"></script>
 <style>
 #shift-matrix tr.scheduled {
   background-color:#afa;
