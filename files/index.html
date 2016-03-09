@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<h3 style="text-align:center">List of files</h3>
+
+<ul>
+{% for file in site.static_files %}
+  {% assign tmp = file.path | split: '/' %}
+  {% if tmp.size >= 2 %}
+    {% assign parent = tmp[1] %}
+    {% if parent == "files" %}
+      {% assign filename = file.path | split: '/' | last %}
+      <li><a href="{{ file.path }}">{{ filename }}</a></li>
+    {% endif %}
+  {% endif %}
+{% endfor %}
+</ul>
