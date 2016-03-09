@@ -1,15 +1,8 @@
 ---
-layout: default
-title: Staff
+layout: sub
+title: Staff Info
 ---
-<h3 style="text-align:center">Staff</h3>
-
-<h3>Shift matrix:</h3>
-<table id="shift-matrix"></table>
-
-To request to be scheduled for a certain day, send mail to staff@.
-
-<h3>Staff requirements:</h3>
+<h3>Staff requirements</h3>
 
 SBK requires that all staff:
 
@@ -18,67 +11,25 @@ SBK requires that all staff:
 <li>pay staff dues ($18/mo payable in 3 month increments)</li>
 </ul>
 
-<h3>How to host open shop:</h3>
-<ol>
-<li>arrive on time to unlock.</li>
-<li>put out the sign (usually a whiteboard propped up on a chair).</li>
-<li>at the end of open shop:
-  <ul>
-  <li>put away the tools.</li>
-  <li>count the money in the "contributions" box and transfer it to the money jar.</li>
-  <li>record the amount transferred in the notepad on the wall.</li>
-  </ul>
-</li>
-<li>lock up.</li>
-</ol>
+<h3>Staff benefits</h3>
 
-<p>If you can't make your scheduled shift, please notify staff@ soon so we can
-find somebody to cover.</p>
+Staff members receive a key to Sprout and may use the shop at any time!
 
-<h3>How to contact other staff:</h3>
+<h3>Interested?</h3>
 
-Simply send mail to staff@.  All staff will receive mail sent to staff@.
+If you are interested in becoming staff, please send mail to
+<span class="email-address">staff _at_ somervillebikekitchen (dot) org</span>
 
 <script src="/jquery.min.js"></script>
-<script>
-  function gen_row(row) {
-    var jsrow = $('<tr></tr>');
-    jsrow.append('<th class="date">' + row['date'] + ' ' + row['dow'] + '</th>');
-    var row_class = 'unscheduled';
-    for (scheduled in row['shifts']) {
-      cell_class = 'unscheduled';
-      cell_content = '';
-      if (row['shifts'][scheduled] == '1') {
-        row_class = 'scheduled';
-        cell_class = 'scheduled';
-        cell_content = 'X';
-      }
-      var cell = $('<td></td>').addClass(cell_class).text(cell_content);
-      jsrow.append(cell);
-    }
-    jsrow.addClass(row_class);
-    return jsrow;
+<script type="text/javascript">
+$(document).ready(function() {
+  var address_objects = $('span.email-address');
+  for (var i = 0; i < address_objects.length; i++) {
+    var address = $(address_objects[i]).text()
+      .replace(' _at_ ', '@')
+      .replace(' (dot) ', '.')
+      .replace(' (dot) ', '.');
+    $(address_objects[i]).text(address);
   }
-  function full_table(data) {
-    var table = $("table#shift-matrix");
-    var header = $('<tr></tr>');
-    header.append('<th></th>');
-    for (i in data['all_staff']) {
-      header.append('<th>' + data['all_staff'][i] + '</th>');
-    }
-    table.append(header);
-    for (row in data['data']) {
-      table.append(gen_row(data['data'][row]));
-    }
-  }
+});
 </script>
-<script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table"></script>
-<style>
-#shift-matrix tr.scheduled {
-  background-color:#afa;
-  text-align:center;
-}
-#shift-matrix tr.unscheduled {
-  background-color:#faa;
-}
-</style>

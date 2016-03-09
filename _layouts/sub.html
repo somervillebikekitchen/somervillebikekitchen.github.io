@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv='Content-Type' content='text/html; charset=utf-8'/>
+  <meta name="description"
+        content="Somerville Bike Kitchen, a community bicycle repair cooperative">
+  <title>Somerville Bike Kitchen{% if page.title %} - {{ page.title }}{% endif %}</title>
+  <link rel='stylesheet' href='/stylesheet.css' type='text/css' />
+</head>
+<body>
+  <h2 class="ban">Somerville Bike Kitchen</h2>
+
+  <ul class="nav">
+    <li><a href="/">about</a></li>
+    <li><a href="/events.html">events</a></li>
+    <li><a href="/photos.html">photos</a></li>
+    <li><a href="/contact.html">contact</a></li>
+  </ul>
+
+  <div class="maintext">
+    <ul class="subnav">
+    {% assign tmp = page.url | split: '/' %}
+    {% assign page_super = tmp[1] %}
+    {% for p in site.pages %}
+      {% assign tmp = p.url | split: '/' %}
+      {% assign p_super = tmp[1] %}
+      {% if p_super == page_super %}
+        {% unless p.hidden_link %}
+          {% assign link_class = "" %}
+          {% if p.url == page.url %}
+            {% assign link_class = "active" %}
+          {% endif %}
+          <li><a class="{{ link_class }}" href="{{ p.url }}">{{ p.title }}</a></li>
+        {% endunless %}
+      {% endif %}
+    {% endfor %}
+    </ul>
+    {{ content }}
+    <div style="clear:both"></div>
+  </div>
+
+  <div class="footer">
+    <ul>
+      <li><a href="/docs/staff.html">staff area</a></li> &bull;
+      <li><a href="/friends.html">our friends</a></li>
+    </ul>
+  </div>
+
+</body>
+
+</html>

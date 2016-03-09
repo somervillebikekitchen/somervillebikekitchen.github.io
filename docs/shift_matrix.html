@@ -1,0 +1,51 @@
+---
+layout: sub
+title: Shift Matrix
+---
+<table id="shift-matrix"></table>
+
+To request to be scheduled for a certain day, send mail to staff@.
+
+<script src="/jquery.min.js"></script>
+<script>
+  function gen_row(row) {
+    var jsrow = $('<tr></tr>');
+    jsrow.append('<th class="date">' + row['date'] + ' ' + row['dow'] + '</th>');
+    var row_class = 'unscheduled';
+    for (scheduled in row['shifts']) {
+      cell_class = 'unscheduled';
+      cell_content = '';
+      if (row['shifts'][scheduled] == '1') {
+        row_class = 'scheduled';
+        cell_class = 'scheduled';
+        cell_content = 'X';
+      }
+      var cell = $('<td></td>').addClass(cell_class).text(cell_content);
+      jsrow.append(cell);
+    }
+    jsrow.addClass(row_class);
+    return jsrow;
+  }
+  function full_table(data) {
+    var table = $("table#shift-matrix");
+    var header = $('<tr></tr>');
+    header.append('<th></th>');
+    for (i in data['all_staff']) {
+      header.append('<th>' + data['all_staff'][i] + '</th>');
+    }
+    table.append(header);
+    for (row in data['data']) {
+      table.append(gen_row(data['data'][row]));
+    }
+  }
+</script>
+<script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table"></script>
+<style>
+#shift-matrix tr.scheduled {
+  background-color:#afa;
+  text-align:center;
+}
+#shift-matrix tr.unscheduled {
+  background-color:#faa;
+}
+</style>
