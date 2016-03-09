@@ -3,7 +3,16 @@ import csv
 import datetime
 
 SHIFTS_CSV_URL = 'http://sbk.sankey.info/calc/dewxjhhcc2.csv'
+TERMS_CSV_URL = 'http://sbk.sankey.info/calc/sbk_start_dates.csv'
 NUM_STAFF = 8
+
+class EtherCalcHelpers:
+  @staticmethod
+  def get_date_from_cell(cell_contents):
+    try: days_since_1900 = int(cell_contents)
+    except: return None
+    date = datetime.date(1899,12,30) + datetime.timedelta(days=days_since_1900)
+    return date
 
 class Shifts:
   @staticmethod
@@ -20,9 +29,9 @@ class Shifts:
   @staticmethod
   def parse_row(row):
     '''parse all relevant information in a full spreadsheet data row'''
-    try: days_since_1900 = int(row[0])
-    except: return None, None
-    row_date = datetime.date(1899,12,30) + datetime.timedelta(days=days_since_1900)
+    row_date = EtherCalcHelpers.get_date_from_cell(row[0])
+    if row_date == None:
+      return None, None
     row_shifts = Shifts.get_row_shifts(row)
     return row_date, row_shifts
   
@@ -58,3 +67,16 @@ class Shifts:
       'all_staff': all_staff,
       'data': data,
     }
+
+class Terms:
+  @staticmethod
+  def fetch_terms():
+    f = urllib2.urlopen(TERMS_CSV_URL)
+    rows = csv.reader(f)
+    data = {}
+    for row in rows:
+      member = row[0]
+      if len(member) == 0: continue
+      date = EtherCalcHelpers.get_date_from_cell(row[1])
+      data[member] = date
+    return data
