@@ -2,9 +2,13 @@ import urllib2
 import csv
 import datetime
 
+# highly variable definitions:
 SHIFTS_CSV_URL = 'http://sbk.sankey.info/calc/dewxjhhcc2.csv'
 TERMS_CSV_URL = 'http://sbk.sankey.info/calc/sbk_start_dates.csv'
 NUM_STAFF = 8
+
+# less variable definitions:
+TERM_LENGTH = datetime.timedelta(days=(7*12))
 
 class EtherCalcHelpers:
   @staticmethod
@@ -80,3 +84,11 @@ class Terms:
       date = EtherCalcHelpers.get_date_from_cell(row[1])
       data[member] = date
     return data
+
+  @staticmethod
+  def current_term_start(start_date):
+    tmp_date = start_date
+    while datetime.date.today() > tmp_date + TERM_LENGTH:
+      tmp_date += TERM_LENGTH
+    return tmp_date
+
