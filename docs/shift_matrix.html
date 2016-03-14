@@ -2,6 +2,10 @@
 layout: sub
 title: Shift Matrix
 ---
+<style>
+  div.maintext { width: 700px }
+</style>
+
 <h3>Shift Matrix</h3>
 <table id="shift-matrix"></table>
 
@@ -10,27 +14,35 @@ title: Shift Matrix
 <h3>Terms Matrix</h3>
 <table id="terms-matrix">
 <tr>
-<th>name</th>
-<th>current term</th>
-<th>next term</th>
+<th rowspan="2">name</th>
+<th colspan="2">current term</th>
+<th colspan="2">next term</th>
+</tr>
+<tr>
+<th>range</th>
+<th>#<br>shifts</th>
+<th>range</th>
+<th>#<br>shifts</th>
 </tr>
 </table>
 
 <script src="/jquery.min.js"></script>
 <script>
+  var full_table_data;
+
   function gen_row(row) {
     var jsrow = $('<tr></tr>');
     jsrow.append('<th class="date">' + row['date'] + ' ' + row['dow'] + '</th>');
-    var row_class = 'unscheduled';
+    var row_class = 'bad';
     for (scheduled in row['shifts']) {
-      cell_class = 'unscheduled';
+      cell_class = 'bad';
       cell_content = '';
       if (row['shifts'][scheduled] == '1') {
-        row_class = 'scheduled';
-        cell_class = 'scheduled';
+        row_class = 'good';
+        cell_class = 'good';
         cell_content = 'X';
       }
-      var cell = $('<td></td>').addClass(cell_class).text(cell_content);
+      var cell = $('<td></td>').text(cell_content);
       jsrow.append(cell);
     }
     jsrow.addClass(row_class);
@@ -55,6 +67,7 @@ title: Shift Matrix
     return data.slice(0, latest_visible_index);
   }
   function full_table(data) {
+    full_table_data = data;
     var table = $("table#shift-matrix");
     var header = $('<tr></tr>');
     header.append('<th></th>');
@@ -63,21 +76,54 @@ title: Shift Matrix
     }
     table.append(header);
     stripped_data = strip_unscheduled_dates(data['data']);
+    var today_date = new Date();
+    var month = ("0" + (today_date.getMonth()+1)).substr(-2,2);
+    var dom = ("0" + today_date.getDate()).substr(-2,2);
+    today = today_date.getFullYear() + '-' + month + '-' + dom;
     for (row in stripped_data) {
-      table.append(gen_row(data['data'][row]));
+      if (stripped_data[row]['date'] >= today) {
+        table.append(gen_row(stripped_data[row]));
+      }
     }
   }
 
   /* Dues Collector View (terms matrix) */
+  function count_shifts(member, start, end) {
+    var member_idx;
+    for (member_idx in full_table_data['all_staff']) {
+      if (member == full_table_data['all_staff'][member_idx]) {
+        break;
+      }
+    }
+    var shift_counter = 0;
+    for (row in full_table_data['data']) {
+      if (start <= full_table_data['data'][row]['date'] && full_table_data['data'][row]['date'] < end) {
+        if (full_table_data['data'][row]['shifts'][member_idx] == '1') {
+          shift_counter += 1;
+        }
+      }
+    }
+    return shift_counter;
+  }
   function terms_data(data) {
     var table = $("table#terms-matrix");
     for (member in data) {
       current_term_range = data[member]['current_term'] + ' — ' + data[member]['next_term'];
+      current_term_shifts = count_shifts(
+        member,
+        data[member]['current_term'],
+        data[member]['next_term']);
       next_term_range = data[member]['next_term'] + ' — ' + data[member]['next_next_term'];
+      next_term_shifts = count_shifts(
+        member,
+        data[member]['next_term'],
+        data[member]['next_next_term']);
       var row = $('<tr></tr>');
-      row.append($('<td></td>').text(member))
-      row.append($('<td></td>').text(current_term_range))
-      row.append($('<td></td>').text(next_term_range))
+      row.append($('<td></td>').text(member));
+      row.append($('<td></td>').text(current_term_range));
+      row.append($('<td></td>').text(current_term_shifts).css("text-align","center").addClass(current_term_shifts > 0 ? "good" : "bad"));
+      row.append($('<td></td>').text(next_term_range));
+      row.append($('<td></td>').text(next_term_shifts).css("text-align","center").addClass(next_term_shifts > 0 ? "good" : "bad"));
       table.append(row);
     }
   }
@@ -85,11 +131,11 @@ title: Shift Matrix
 <script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table"></script>
 <script type="application/javascript" src="http://sbk.sankey.info/hacks/terms_data.cgi?callback=terms_data"></script>
 <style>
-#shift-matrix tr.scheduled {
+tr.good, td.good {
   background-color:#afa;
   text-align:center;
 }
-#shift-matrix tr.unscheduled {
+tr.bad, td.bad {
   background-color:#faa;
 }
 </style>
