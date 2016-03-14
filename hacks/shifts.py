@@ -43,6 +43,12 @@ class Shifts:
   def is_upcoming(date):
     today = datetime.date.today()
     return date >= today
+
+  @staticmethod
+  def is_relevant(date):
+    today = datetime.date.today()
+    history_buffer = datetime.timedelta(weeks=12)
+    return date >= today - history_buffer
   
   @staticmethod
   def is_scheduled(shifts):

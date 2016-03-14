@@ -4,7 +4,7 @@ import json
 schedule = Shifts.fetch_schedule()
 new_data = []
 for date, shifts in schedule['data'].items():
-  if Shifts.is_upcoming(date):
+  if Shifts.is_relevant(date):
     new_data.append({
       'date': date.strftime('%F'),
       'dow': date.strftime('%a'),
