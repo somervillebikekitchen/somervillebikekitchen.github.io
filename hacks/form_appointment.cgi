@@ -8,7 +8,7 @@ import cgitb
 cgitb.enable()
 import pytz
 from datetime import datetime
-from form_appointment.conf.py import MSMTP_CONFIG, SBK_STAFF_ADDRESS, MAILER_ADDRESS, HUMANS_SAY
+from form_appointment_conf import MSMTP_CONFIG, SBK_STAFF_ADDRESS, MAILER_ADDRESS, HUMANS_SAY
 
 def error_and_exit(problems):
   print "Content-Type: text/plain"
