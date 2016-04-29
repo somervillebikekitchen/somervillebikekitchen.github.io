@@ -1,0 +1,5 @@
+MSMTP_CONFIG = '.msmtprc'
+SBK_STAFF_ADDRESS = 'staff@example.com'
+MAILER_ADDRESS = 'sbk.form@sankey.info'
+HUMANS_SAY = ['human', 'humans', 'person', 'people', 'homo sapien',
+              'homo-sapien']

@@ -1,0 +1,54 @@
+---
+layout: default
+title: About
+---
+<script src="/jquery.min.js"></script>
+<script src="/jquery-ui-1.11.4.custom/jquery-ui.min.js"></script>
+<link rel='stylesheet' href='/jquery-ui-1.11.4.custom/jquery-ui.min.css' type='text/css' />
+<script>
+$(function() {
+  $( "#date" ).datepicker({
+    dateFormat: "yy-mm-dd"
+  });
+});
+</script>
+<style>
+.required {
+  color:red;
+}
+</style>
+
+<h3 style="text-align:center">Schedule An Appointment</h3>
+<form action="http://sbk.sankey.info/hacks/form_appointment.cgi" method="get">
+    <div>
+        <label for="name">Description<span class="required">*</span>:</label>
+        <input type="text" id="description" name="description"
+         maxlength=50 size=50
+         placeholder="e.g. fixing a flat and truing my wheel" />
+    </div>
+    <div>
+        <label for="name">Name<span class="required">*</span>:</label>
+        <input type="text" id="name" name="name" maxlength=50 size=50 />
+    </div>
+    <div>
+        <label for="email">E-mail<span class="required">*</span>:</label>
+        <input type="email" id="email" name="email" />
+    </div>
+    <div>
+        <label for="date">Date<span class="required">*</span>:</label>
+        <input type="text" id="date" name="date" maxlength=10 size=10 />
+    </div>
+    <div>
+        <label for="message" style="vertical-align:middle">Message:</label>
+        <textarea id="message" name="message"
+         placeholder="special considerations, preferred time, etc..."
+         cols=50 rows=5 style="vertical-align:middle"></textarea>
+    </div>
+    <div>
+        <label for="human">You are not a bot.  You are a<span class="required">*</span>:</label>
+        <input type="human" id="human" name="human" maxlength=20 size=10 />
+    </div>
+    <div class="button">
+        <button type="submit">Notify SBK Staff!</button>
+    </div>
+</form>
