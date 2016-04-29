@@ -98,5 +98,5 @@ if rc is not None and rc >> 8:
   error_and_exit('problem sending mail')
 
 #print "Thank you for your submission!  SBK staff have been notified"
-print "Location: /appointment/thanks.html"
+print "Location: http://somervillebikekitchen.org/appointment/thanks.html"
 print
