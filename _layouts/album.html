@@ -29,10 +29,17 @@
     {% if page.title %}<h2>{{ page.title }}</h2>{% endif %}
 
     <ul>
-    {% for photo in page.photos %}
-    <a href="{{ photo | uri_escape }}">
-    <img src="{{ photo | uri_escape }}"/>
-    </a>
+    {% for file in site.static_files %}
+      {% if file.extname == ".jpg" or file.extname == ".JPG" or file.extname == ".jpeg" or file.extname == ".JPEG" %}
+        {% assign photo_match_str = '/albums/' | append: page.title | append: '/' %}
+        {% if file.path contains photo_match_str %}
+          {% unless file.path contains 'thumbnail.jpg' %}
+            <a href="{{ file.path | uri_escape }}">
+            <img src="{{ file.path | uri_escape }}"/>
+            </a>
+          {% endunless %}
+        {% endif %}
+      {% endif %}
     {% endfor %}
     </ul>
 
