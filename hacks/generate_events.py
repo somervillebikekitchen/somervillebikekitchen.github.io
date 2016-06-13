@@ -1,4 +1,12 @@
 #!/usr/bin/python2
+##############
+# DEPRECATED #
+##############
+#
+# This script is deprecated in favor of Jekyll/Liquid template logic (see
+# events.html).
+#
+#
 import sys
 from HTMLParser import HTMLParser
 from string import split
