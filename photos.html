@@ -1,15 +1,6 @@
 ---
 layout: default
 title: Photos
-albums:
- - 2015-04-01_our_beginnings
- - 2015-08-08_bike_in_movie
- - 2015-08-23_flea_market
- - 2016-02-01_group_photo
- - 2016-03-22_shop
- - 2016-04-23_bike_in_movie
- - 2016-05-01_bike_month_kickoff
- - 2016-05-17_open_shop
 ---
 <style>
 div.maintext { width: 95%; text-align: center }
@@ -18,11 +9,18 @@ div.maintext img { height: 180px; width:auto; }
 
 <h2>SBK Photo Albums</h2>
 
-{% for album_title in page.albums %}
-<a href="/albums/{{ album_title | uri_escape }}/">
-<div style="float:left; text-align:center;">
-<img src="/albums/{{ album_title | uri_escape }}/thumbnail.jpg" /><br>
-{{ album_title }}
-</div>
-</a>
+{% assign pages_sorted = site.html_pages | sort: 'path' %}
+{% for file in pages_sorted %}
+  {% if file.path contains 'albums/' %}
+    {% if file.path contains 'index.html' %}
+      {% assign path_components = file.path | split: '/' %}
+      {% assign album_title = path_components[1] %}
+      <a href="/albums/{{ album_title | uri_escape }}/">
+      <div style="float:left; text-align:center;">
+      <img src="/albums/{{ album_title | uri_escape }}/thumbnail.jpg" /><br>
+      {{ album_title }}
+      </div>
+      </a>
+    {% endif %}
+  {% endif %}
 {% endfor %}
