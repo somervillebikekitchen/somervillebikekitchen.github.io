@@ -89,12 +89,7 @@ title: Shift Matrix
 
   /* Dues Collector View (terms matrix) */
   function count_shifts(member, start, end) {
-    var member_idx;
-    for (member_idx in full_table_data['all_staff']) {
-      if (member == full_table_data['all_staff'][member_idx]) {
-        break;
-      }
-    }
+    var member_idx = full_table_data['all_staff'].indexOf(member);
     var shift_counter = 0;
     for (row in full_table_data['data']) {
       if (start <= full_table_data['data'][row]['date'] && full_table_data['data'][row]['date'] < end) {
@@ -107,19 +102,21 @@ title: Shift Matrix
   }
   function terms_data(data) {
     var table = $("table#terms-matrix");
-    for (member in data) {
-      current_term_range = data[member]['current_term'] + ' — ' + data[member]['next_term'];
+    for (member_idx in full_table_data['all_staff']) {
+      member_name = full_table_data['all_staff'][member_idx];
+      term_data = data[member_name];
+      current_term_range = term_data['current_term'] + ' — ' + term_data['next_term'];
       current_term_shifts = count_shifts(
-        member,
-        data[member]['current_term'],
-        data[member]['next_term']);
-      next_term_range = data[member]['next_term'] + ' — ' + data[member]['next_next_term'];
+        member_name,
+        term_data['current_term'],
+        term_data['next_term']);
+      next_term_range = term_data['next_term'] + ' — ' + term_data['next_next_term'];
       next_term_shifts = count_shifts(
-        member,
-        data[member]['next_term'],
-        data[member]['next_next_term']);
+        member_name,
+        term_data['next_term'],
+        term_data['next_next_term']);
       var row = $('<tr></tr>');
-      row.append($('<td></td>').text(member));
+      row.append($('<td></td>').text(member_name));
       row.append($('<td></td>').text(current_term_range));
       row.append($('<td></td>').text(current_term_shifts).css("text-align","center").addClass(current_term_shifts > 0 ? "good" : "bad"));
       row.append($('<td></td>').text(next_term_range));

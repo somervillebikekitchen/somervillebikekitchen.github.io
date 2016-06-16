@@ -64,15 +64,18 @@ class Shifts:
     rows = csv.reader(f)
     first_row = True
     all_staff = []
+    all_staff_filtered = []
     data = {}
     for row in rows:
       if first_row:
         all_staff = Shifts.parse_header(row)
+        all_staff_filtered = [x for x in all_staff if len(x) > 0]
         first_row = False
       else:
         date, shifts = Shifts.parse_row(row)
         if not date: break
-        data[date] = shifts
+        shifts_filtered = [x for i, x in enumerate(shifts) if len(all_staff[i]) > 0]
+        data[date] = shifts_filtered
     return {
       'all_staff': all_staff,
       'data': data,
