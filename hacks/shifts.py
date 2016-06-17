@@ -2,12 +2,11 @@ import urllib2
 import csv
 import datetime
 
-# highly variable definitions:
+# infrastructure variables:
 SHIFTS_CSV_URL = 'http://sbk.sankey.info/calc/dewxjhhcc2.csv'
 TERMS_CSV_URL = 'http://sbk.sankey.info/calc/sbk_start_dates.csv'
-NUM_STAFF = 8
 
-# less variable definitions:
+# universal facts:
 TERM_LENGTH = datetime.timedelta(days=(7*12))
 
 class EtherCalcHelpers:
@@ -23,7 +22,7 @@ class Shifts:
   def get_row_shifts(row):
     '''get shfits cells from full spreadsheet row'''
     column_first_person = 3
-    return row[column_first_person:column_first_person+NUM_STAFF]
+    return row[column_first_person:]
   
   @staticmethod
   def parse_header(row):
