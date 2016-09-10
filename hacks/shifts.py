@@ -58,8 +58,12 @@ class Shifts:
     return [y[1] for y in zip(shifts, all_staff) if y[0] == '1']
   
   @staticmethod
-  def fetch_schedule():
-    f = urllib2.urlopen(SHIFTS_CSV_URL)
+  def fetch_schedule(csvfile_override=None):
+    f = None
+    if csvfile_override is None:
+      f = urllib2.urlopen(SHIFTS_CSV_URL)
+    else:
+      f = open(csvfile_override)
     rows = csv.reader(f)
     first_row = True
     all_staff = []

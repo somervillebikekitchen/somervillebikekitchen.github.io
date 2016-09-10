@@ -1,7 +1,11 @@
 #!/usr/bin/python2
 from shifts import Shifts
 import json
-schedule = Shifts.fetch_schedule()
+import sys
+if len(sys.argv) == 2:
+  schedule = Shifts.fetch_schedule(sys.argv[1])
+else:
+  schedule = Shifts.fetch_schedule()
 new_data = []
 for date, shifts in schedule['data'].items():
   if Shifts.is_relevant(date):
