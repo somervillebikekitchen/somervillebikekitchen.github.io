@@ -3,8 +3,8 @@ import csv
 import datetime
 
 # infrastructure variables:
-SHIFTS_CSV_URL = 'http://sbk.sankey.info/calc/dewxjhhcc2.csv'
-TERMS_CSV_URL = 'http://sbk.sankey.info/calc/sbk_start_dates.csv'
+SHIFTS_CSV_URL = 'http://calc.sankey.info/sbk_shifts.csv'
+TERMS_CSV_URL = 'http://calc.sankey.info/sbk_start_dates.csv'
 
 # universal facts:
 TERM_LENGTH = datetime.timedelta(days=(7*12))
