@@ -6,10 +6,15 @@ title: Shift Matrix
   div.maintext { width: 700px }
 </style>
 
+<p>To request to be scheduled for a certain day, send mail to staff@.</p>
+
 <h3>Shift Matrix</h3>
 <table id="shift-matrix"></table>
-
-<p>To request to be scheduled for a certain day, send mail to staff@.</p>
+<table>
+<caption>Legend</caption>
+<tr><td class="good">green</td><td>This shift has a host</td></tr>
+<tr><td class="bad">red</td><td>This shift needs a host!!</td></tr>
+</table>
 
 <h3>Terms Matrix</h3>
 <table id="terms-matrix">
@@ -24,6 +29,11 @@ title: Shift Matrix
 <th>range</th>
 <th>#<br>shifts</th>
 </tr>
+</table>
+<table>
+<caption>Legend</caption>
+<tr><td class="good">green</td><td>This term has been fulfilled</td></tr>
+<tr><td class="bad">red</td><td>This person needs to take more shifts!</td></tr>
 </table>
 
 <style>
