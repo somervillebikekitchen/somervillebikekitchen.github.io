@@ -117,6 +117,10 @@ img.no-decoration {
   margin:auto;
 }
 
+img.no-fixed-width {
+  width:auto;
+}
+
 .event-list h3 {
   display: inline;
 }
@@ -191,4 +195,10 @@ div.separator {
                                             rgba(0,50,0,0.85) 50%,
                                             rgba(0,50,0,0)    90%,
                                             rgba(0,50,0,0)   100%);
+}
+
+h1#sub-title {
+  text-align: center;
+  margin-top: 4px;
+  margin-bottom: 4px;
 }
