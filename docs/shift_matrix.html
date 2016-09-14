@@ -26,6 +26,16 @@ title: Shift Matrix
 </tr>
 </table>
 
+<style>
+tr.good, td.good {
+  background-color:#afa;
+  text-align:center;
+}
+tr.bad, td.bad {
+  background-color:#faa;
+}
+</style>
+
 <script src="/jquery.min.js"></script>
 <script>
   var full_table_data;
@@ -125,14 +135,5 @@ title: Shift Matrix
     }
   }
 </script>
-<script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table"></script>
-<script type="application/javascript" src="http://sbk.sankey.info/hacks/terms_data.cgi?callback=terms_data"></script>
-<style>
-tr.good, td.good {
-  background-color:#afa;
-  text-align:center;
-}
-tr.bad, td.bad {
-  background-color:#faa;
-}
-</style>
+<script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table" defer></script>
+<script type="application/javascript" src="http://sbk.sankey.info/hacks/terms_data.cgi?callback=terms_data" defer></script>
