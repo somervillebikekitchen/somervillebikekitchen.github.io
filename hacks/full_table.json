@@ -1,0 +1,8 @@
+#!/bin/bash
+
+echo "Content-Type: text/json"
+echo
+./full_table.py | tr -d '\n'
+echo
+
+# vim:set ft=sh:
