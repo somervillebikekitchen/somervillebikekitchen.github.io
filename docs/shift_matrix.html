@@ -50,6 +50,17 @@ tr.bad, td.bad {
 <script src="/jquery.min.js"></script>
 <script>
   var full_table_data;
+  var full_table_data_defer = $.Deferred();
+
+  $(function () {
+    $.getJSON("http://sbk.sankey.info/hacks/full_table.json", full_table);
+    $.getJSON("http://sbk.sankey.info/hacks/terms_data.json", function (data) {
+      $.when(full_table_data_defer).done(function (k) {
+        terms_data(data);
+      });
+    });
+  });
+
 
   function gen_row(row) {
     var jsrow = $('<tr></tr>');
@@ -89,6 +100,7 @@ tr.bad, td.bad {
   }
   function full_table(data) {
     full_table_data = data;
+    full_table_data_defer.resolve(full_table_data);
     var table = $("table#shift-matrix");
     var header = $('<tr></tr>');
     header.append('<th></th>');
@@ -146,5 +158,3 @@ tr.bad, td.bad {
     }
   }
 </script>
-<script type="application/javascript" src="http://sbk.sankey.info/hacks/full_table.cgi?callback=full_table" defer></script>
-<script type="application/javascript" src="http://sbk.sankey.info/hacks/terms_data.cgi?callback=terms_data" defer></script>
