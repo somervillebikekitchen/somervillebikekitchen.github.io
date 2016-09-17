@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Content-Type: text/json"
+echo "Content-Type: application/json"
 echo
 ./terms_data.py | tr -d '\n'
 echo
