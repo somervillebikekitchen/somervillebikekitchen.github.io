@@ -49,6 +49,8 @@ tr.bad, td.bad {
 
 <script src="/jquery.min.js"></script>
 <script>
+  var MIN_GOOD_TERM = 3;
+
   var full_table_data;
   var full_table_data_defer = $.Deferred();
 
@@ -150,10 +152,24 @@ tr.bad, td.bad {
         term_data['next_next_term']);
       var row = $('<tr></tr>');
       row.append($('<td></td>').text(member_name));
-      row.append($('<td></td>').text(current_term_range).addClass(current_term_shifts > 0 ? "good" : "bad"));
-      row.append($('<td></td>').text(current_term_shifts).css("text-align","center").addClass(current_term_shifts > 0 ? "good" : "bad"));
-      row.append($('<td></td>').text(next_term_range).addClass(next_term_shifts > 0 ? "good" : "bad"));
-      row.append($('<td></td>').text(next_term_shifts).css("text-align","center").addClass(next_term_shifts > 0 ? "good" : "bad"));
+      row.append($('<td></td>')
+         .text(current_term_range)
+         .addClass(current_term_shifts >= MIN_GOOD_TERM ? "good" : "bad")
+         );
+      row.append($('<td></td>')
+         .text(current_term_shifts)
+         .css("text-align","center")
+         .addClass(current_term_shifts >= MIN_GOOD_TERM ? "good" : "bad")
+         );
+      row.append($('<td></td>')
+         .text(next_term_range)
+         .addClass(next_term_shifts >= MIN_GOOD_TERM ? "good" : "bad")
+         );
+      row.append($('<td></td>')
+         .text(next_term_shifts)
+         .css("text-align","center")
+         .addClass(next_term_shifts >= MIN_GOOD_TERM ? "good" : "bad")
+         );
       table.append(row);
     }
   }
