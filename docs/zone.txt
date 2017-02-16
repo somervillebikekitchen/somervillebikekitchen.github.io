@@ -3,20 +3,24 @@
 ;; reflect the contents of this file.
 
 ;; MX records
-@        3600  IN MX 1  ASPMX.L.GOOGLE.COM.
-@        3600  IN MX 5  ALT1.ASPMX.L.GOOGLE.COM.
-@        3600  IN MX 5  ALT2.ASPMX.L.GOOGLE.COM.
-@        3600  IN MX 10 ALT3.ASPMX.L.GOOGLE.COM.
-@        3600  IN MX 10 ALT4.ASPMX.L.GOOGLE.COM.
+@         3600 IN MX   1   ASPMX.L.GOOGLE.COM.
+@         3600 IN MX   5   ALT1.ASPMX.L.GOOGLE.COM.
+@         3600 IN MX   5   ALT2.ASPMX.L.GOOGLE.COM.
+@         3600 IN MX   10  ALT3.ASPMX.L.GOOGLE.COM.
+@         3600 IN MX   10  ALT4.ASPMX.L.GOOGLE.COM.
 
 ;; physical servers
-@        3600 IN A 192.30.252.153 ;; github pages 1
-@        3600 IN A 192.30.252.154 ;; github pages 2
+github    3600 IN A    192.30.252.153  ;; github pages 1
+github    3600 IN A    192.30.252.154  ;; github pages 2
+wordpress 3600 IN A    143.95.70.174   ;; asmallorange wordpress host
+@         3600 IN A    143.95.70.174   ;; asmallorange wordpress host
 
 ;; service names
-www      3600  IN CNAME somervillebikekitchen.github.io.
-mail     3600  IN CNAME ghs.google.com.
-calendar 3600  IN CNAME ghs.google.com.
-docs     3600  IN CNAME ghs.google.com.
+www       3600 IN CNAME wordpress
+dev       3600 IN CNAME wordpress
+old       3600 IN CNAME github
+mail      3600 IN CNAME ghs.googlehosted.com.
+calendar  3600 IN CNAME ghs.googlehosted.com.
+docs      3600 IN CNAME ghs.googlehosted.com.
 
 ;; vim: ft=bindzone
